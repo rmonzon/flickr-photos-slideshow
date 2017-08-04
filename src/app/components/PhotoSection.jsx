@@ -10,7 +10,7 @@ const PhotoSection = ({imagesIsLoading, noData, slideIndex, images, selected, go
       <img className="left-arrow" src={arrowLeft} />
     </div>
 
-    { selected && <img title={selected.title} src={selected.url} /> }
+    { selected && <img id="main-photo" title={selected.title} src={selected.url} /> }
 
     {selected &&
     <div className="image__title">

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {imagesHasFailed, imagesIsLoading, images} from '../../login/reducers';
+import {imagesHasFailed, imagesIsLoading, images} from '../../app/reducers';
 
 export default combineReducers({
   imagesHasFailed,

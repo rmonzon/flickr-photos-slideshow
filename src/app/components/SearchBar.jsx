@@ -23,7 +23,6 @@ const SearchBar = ({value, imagesIsLoading, handleOnChange, handleOnSubmit}) => 
 );
 
 SearchBar.propTypes = {
-  images: PropTypes.array.isRequired,
   value: PropTypes.string.isRequired,
   handleOnSubmit: PropTypes.func.isRequired,
   handleOnChange: PropTypes.func.isRequired,
