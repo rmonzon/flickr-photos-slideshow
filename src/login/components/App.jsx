@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Spinner from '../../core/components/Spinner';
+import PhotoPreviews from './PhotoPreviews';
+import PhotoSection from './PhotoSection';
+import SearchBar from './SearchBar';
 import '../../styles/app.scss';
-import arrowRight from '../../images/arrow-right.png';
-import arrowLeft from '../../images/arrow-left.png';
-import defaultBg from '../../images/placeholder-img.jpg';
 
 class App extends Component {
   state = {
     value: '',
     slideIndex: 0,
-    selectedImage: null,
+    selectedImage: null
   };
 
   handleOnChange = e => {
@@ -22,7 +21,7 @@ class App extends Component {
     e.preventDefault();
 
     const {doGetImagesAsync} = this.props;
-    this.setState({selectedImage: null, slideIndex: 0});
+    this.setState({slideIndex: 0});
     doGetImagesAsync(this.state.value);
   };
 
@@ -50,36 +49,20 @@ class App extends Component {
     }
   };
 
-  onImageLoad = e => {
-    console.log('hereeeee', 'asasasas');
-  };
-
   render() {
-    const {value, selectedImage, slideIndex} = this.state;
+    const {value, slideIndex} = this.state;
     const {images, imagesIsLoading} = this.props;
-    const selected = selectedImage || images[0];
+    const selected = imagesIsLoading ? null : images[slideIndex];
     const noData = images.length === 0 && !imagesIsLoading;
 
     return (
       <div className="app__container">
-        <div className="search-box__container">
-          <form className="search-box__form" onSubmit={this.handleOnSubmit}>
-            <div className="search-box__input-container">
-              <input
-                id="search-bar"
-                name="search"
-                type="text"
-                autoComplete="off"
-                autoFocus
-                value={value}
-                disabled={imagesIsLoading}
-                className="input-field"
-                placeholder="Search..."
-                onChange={this.handleOnChange} />
-              <div className="search-box__icon" />
-            </div>
-          </form>
-        </div>
+        <SearchBar
+          images={images}
+          value={value}
+          imagesIsLoading={imagesIsLoading}
+          handleOnSubmit={this.handleOnSubmit}
+          handleOnChange={this.handleOnChange} />
 
         {imagesIsLoading && <Spinner classNames={'main__spinner'} />}
 
@@ -90,45 +73,21 @@ class App extends Component {
               <h1>Find your inspiration.</h1>
             </div> :
             <div>
-              <div className="image__container">
-                <div className={cx('left-arrow-container', {'hidden': noData || imagesIsLoading})} onClick={this.goToPrevImage}>
-                  <img className="left-arrow" src={arrowLeft} />
-                </div>
+              <PhotoSection
+                images={images}
+                imagesIsLoading={imagesIsLoading}
+                noData={noData}
+                selected={selected}
+                slideIndex={slideIndex}
+                goToPrevImage={this.goToPrevImage}
+                goToNextImage={this.goToNextImage} />
 
-                { selected &&
-                  <img
-                    title={selected.title}
-                    src={selected.url}
-                    onLoad={this.onImageLoad} />
-                }
-
-                {selected &&
-                <div className="image__title">
-                  <span>{slideIndex + 1} / {images.length}</span>
-                </div>
-                }
-
-                <div className={cx('right-arrow-container', {'hidden': noData || imagesIsLoading})} onClick={this.goToNextImage}>
-                  <img className="right-arrow" src={arrowRight} />
-                </div>
-              </div>
-
-              <div className={cx('previews__container', {'hidden': noData || imagesIsLoading})}>
-                <div className="previews__overflow-container">
-                  {
-                    !imagesIsLoading ?
-                      images.map(preview => (
-                        <div
-                          key={preview.id}
-                          className={cx('previews__box', {'preview-selected': selected.index === preview.index})}
-                          onClick={this.handleClickPreview}>
-                          <img data-index={preview.index} title={preview.title} src={preview.url} />
-                        </div>
-                      )) : null
-                  }
-                  { noData && <div className="previews__no-data">Nothing to show here.</div> }
-                </div>
-              </div>
+              <PhotoPreviews
+                images={images}
+                imagesIsLoading={imagesIsLoading}
+                noData={noData}
+                selected={selected}
+                handleClickPreview={this.handleClickPreview} />
             </div>
         }
       </div>

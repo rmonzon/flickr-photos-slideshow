@@ -24,7 +24,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  top: 10px;
+  top: 11px;
   right: 15px;
   cursor: pointer;
 }
@@ -93,6 +93,8 @@
     width: auto;
     max-height: 100%;
     overflow-x: hidden;
+    opacity: 1;
+    animation: fadeIn 1s;
   }
 }
 
@@ -188,4 +190,9 @@ h1 {
   right: 0;
   text-align: center;
   color: #fff;
+}
+
+@keyframes fadeIn {
+  0%   {opacity: 0}
+  100% {opacity: 1}
 }
