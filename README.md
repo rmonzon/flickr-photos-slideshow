@@ -1,13 +1,10 @@
-# DoorDash Frontend Interview Project
+# Flick Photo SlideShow
 
-## Howdy DoorDash Frontend folks! 👋  
-
-Here goes the description and all you need to know in order to review this project, download it from GitHub and run it
-locally.
+## Project description
+This is a very simple project built with React to play around with the [`Flick API`](https://www.flickr.com/services/api)
 
 ## Steps to run the project locally
-By this time you should have this project cloned in your computer, what you need to do to run it locally 
-is pretty simple.
+Clone this repo on your machine
 
 ### 1. Installing dependencies
 Make sure you have `node` installed, with a version greater than `7.0.0`. I used yarn instead of npm but if you're not
@@ -19,11 +16,11 @@ Now run `yarn` or `npm i` in this repo to get your dependencies.
 By default, you can run `yarn start` or `npm start` to run your app, I used Webpack dev server for building purposes.
 You'll notice this in package.json on the scripts section.
 
-### 3. Running the api server
-Same way you provided it to me. `yarn run api-server` or `npm run api-server`
+### 3. Running the tests
+To run the tests you just need to run `yarn test` or `npm run test`
 
 ### 4. You're good to go!
-By this step you should have the project running locally and ready to be tested.
+By this step you should have the project running locally.
 
 ## Important things to point out
 Tools I used on this project:
@@ -31,21 +28,19 @@ Tools I used on this project:
 - React
 - Redux
 - Webpack
-- Babel (I like to write es6 stuff)
+- Babel
 - SASS
-- postCSS (I like to use cool css stuff as much as you do, but some browsers don't support our passion)
+- postCSS
 - Yarn
+- Jest (https://facebook.github.io/jest)
+- Enzyme (https://github.com/airbnb/enzyme)
+- Sinon (http://sinonjs.org/)
 
-I made several changes to the original designs in order to have a better UI/UX. I have a bunch of other ideas 
-to improve even more the experience that unfortunately could'nt do due to time constraints, I guess if we meet
-in person you'll find out :wink:
+I tried to be as simple as possible on this project, and there're a few improvements that can be made
+to make it even better: 
 
-Again there's quite a few things that can be improved and refactored. 
+- Add the `load more` functionality when you scroll to the end of the first 100 image search results
+- Add some CSS animations to improve the experience when images are loading.
+- Add tests for actions and reducers
 
-## Final notes
-I hope you guys like my work and we can have a real beer chat in a near future. (you'll understand what I'm talking about when you see
-the chat rooms list).
-
-Thank you all for taking the time to review this. 
-
-PS: I've done it in the past and still don't like it either.
+:wink:
