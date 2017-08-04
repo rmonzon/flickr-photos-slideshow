@@ -1,7 +1,7 @@
 # Flick Photo SlideShow
 
 ## Project description
-This is a very simple project built with React to play around with the [`Flick API`](https://www.flickr.com/services/api)
+This is a very simple project built with React to play around with the [`Flickr API`](https://www.flickr.com/services/api)
 
 ## Steps to run the project locally
 Clone this repo on your machine
